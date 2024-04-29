@@ -7,6 +7,7 @@ using GenericRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Scrutor;
 
 namespace eAppointmentServer.Infrastructure
 {
@@ -26,15 +27,18 @@ namespace eAppointmentServer.Infrastructure
                 action.Password.RequireDigit = false;
             }).AddEntityFrameworkStores<ApplicationDbContext>();
 
-
-            services.AddScoped<IAppointmentRepository, AppointmentRepository>();
-            services.AddScoped<IDoctorRepository, DoctorRepository>();
-            services.AddScoped<IPatientRepository, PatientRepository>();
             services.AddScoped<IUnitOfWork>(srv => srv.GetRequiredService<ApplicationDbContext>());
 
-            services.AddScoped<IJwtProvider, IJwtProvider>();
+            services.Scan(action =>
+                   action
+                    .FromAssemblies(typeof (DependencyInjection).Assembly)
+                    .AddClasses(publicOnly:false)
+                    .UsingRegistrationStrategy(registrationStrategy: RegistrationStrategy.Skip)
+                    .AsImplementedInterfaces()
+                    .WithScopedLifetime()
 
 
+            );
 
             return services;
         }
