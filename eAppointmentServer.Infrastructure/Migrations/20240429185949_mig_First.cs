@@ -16,9 +16,10 @@ namespace eAppointmentServer.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FirstName = table.Column<string>(type: "vharchar(50)", nullable: false),
-                    LastName = table.Column<string>(type: "vharchar(50)", nullable: false),
-                    Department = table.Column<int>(type: "int", nullable: false)
+                    FirstName = table.Column<string>(type: "varchar(50)", nullable: false),
+                    LastName = table.Column<string>(type: "varchar(50)", nullable: false),
+                    Department = table.Column<int>(nullable: false)
+
                 },
                 constraints: table =>
                 {
@@ -30,12 +31,13 @@ namespace eAppointmentServer.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FirstName = table.Column<string>(type: "vharchar(50)", nullable: false),
-                    LastName = table.Column<string>(type: "vharchar(50)", nullable: false),
-                    IdentityNumber = table.Column<string>(type: "vharchar(11)", nullable: false),
-                    City = table.Column<string>(type: "vharchar(50)", nullable: false),
-                    Town = table.Column<string>(type: "vharchar(50)", nullable: false),
-                    FullAddress = table.Column<string>(type: "vharchar(400)", nullable: false)
+                    FirstName = table.Column<string>(type: "varchar(50)", nullable: false),
+                    LastName = table.Column<string>(type: "varchar(50)", nullable: false),
+                    IdentityNumber = table.Column<string>(type: "varchar(11)", nullable: false),
+                    City = table.Column<string>(type: "varchar(50)", nullable: false),
+                    Town = table.Column<string>(type: "varchar(50)", nullable: false),
+                    FullAddress = table.Column<string>(type: "varchar(400)", nullable: false)
+
                 },
                 constraints: table =>
                 {
