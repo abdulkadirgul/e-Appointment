@@ -1,4 +1,5 @@
 ﻿using eAppointmentServer.Domain.Entities;
+using eAppointmentServer.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -16,6 +17,10 @@ namespace eAppointmentServer.Infrastructure.Configurations
             builder.Property(p=>p.FirstName).HasColumnType("vharchar(50)");
             builder.Property(p=>p.LastName).HasColumnType("vharchar(50)");
             //builder.HasIndex(p => new { p.FirstName, p.LastName }).IsUnique();
+
+            builder.Property(p => p.Department)
+                .HasConversion(v => v.Value, v => DepartmentEnum.FromValue(v))
+                .HasColumnName("Department");
         }
 
     }
