@@ -9,16 +9,14 @@ export class LoginComponent implements OnInit {
 
   @ViewChild("password") password : ElementRef<HTMLInputElement> | undefined;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  
-  }
+  ngOnInit(): void {}
 
   showHidePassword(){
     if(this.password ===undefined) return;
 
-    if(this.password?.nativeElement.type ==="passwprd"){
+    if(this.password.nativeElement.type ==="passwprd"){
         this.password.nativeElement.type ="text";
     }
     else {
